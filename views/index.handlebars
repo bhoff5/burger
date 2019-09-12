@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="jumbotron" style="background-color: #20315A ; color: white;">
+        <h1 class="text-center">
+            <strong>Eat the Burger</strong>
+        </h1>
+    </div>
+    <div class="row justify-content-md-center">
+
+        <div class="col-lg">
+            <div class="card m-3 p-3">
+                <h3>Burgers to Eat:</h3>
+                <ul>
+                    {{#each burgers}}
+                    {{#unless this.devoured}}
+                    <li class="m-3">
+                        <form class="form-inline" action="/{{this.id}}?_method=POST" method="POST">
+                            <label for="submit">{{this.burger_name}}</label>
+                            <input type="hidden" name="devoured" value="true">
+                            <button class="btn-primary m-3" type="submit">Eat</button>
+                        </form>
+
+                    </li>
+                    {{/unless}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="card m-3 p-3">
+                <h3>Burgers Eaten:</h3>
+
+                <ul>
+                    {{#each burgers}}
+                    {{#if this.devoured}}
+                    <li class="m-3">
+                        {{this.burger_name}}
+                    </li>
+                    {{/if}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-lg-4">
+        <div class="card text-center m-3 p-3">
+            <h2>Add A Burger!</h2>
+            <div class="card-body" id="well-section"></div>
+            <form class="create-update-form" action="/" method="POST">
+
+                <div class="form-group">
+                    <p>Enter a burger you need to eat.</p>
+                    <input type="text" id="ca" name="burger_name">
+                </div>
+
+                <button class="btn-primary" type="submit">Submit Burger</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
